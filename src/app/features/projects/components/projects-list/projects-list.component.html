@@ -1,0 +1,20 @@
+<h3>
+	Total projects is
+	<strong>{{ totalProjects$ | async }}</strong>
+</h3>
+<p>
+	Selected project:
+	<strong>{{ (selectedProject$ | async)?.title }}</strong>
+</p>
+<mat-nav-list>
+	<mat-list-item *ngFor="let prj of projects$ | async" (click)="onSelectItem(prj?.id)">
+		<p mat-line>{{ prj?.title }}</p>
+		<button (click)="onRemove(prj?.id)" mat-icon-button aria-label="Remove">
+			<mat-icon>delete</mat-icon>
+		</button>
+	</mat-list-item>
+</mat-nav-list>
+
+<div class="center-container">
+	<mat-spinner [diameter]="30" *ngIf="loading$ | async"></mat-spinner>
+</div>
